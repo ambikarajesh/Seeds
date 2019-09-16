@@ -1,7 +1,6 @@
 const User = require('../models/user');
 
 exports.postRegister = (req, res, next)=>{
-    //console.log(req.body)
     const user = new User(req.body);
     user.save().then(result =>{        
         res.status(201).json({           
@@ -34,17 +33,27 @@ exports.postLogin = (req, res, next) =>{
                 error.statusCode = 401;
                 next(error);
             }
-            user.comparePassword(req.body.password, (err, isMatch)=>{                
+            user.comparePassword(req.body.password, (err, isMatch)=>{ 
                 if(!isMatch){
                     const error = new Error('Invalid Password!!!');
                     error.success = false;
                     error.statusCode = 401;
                     return next(error);
                 }
-                res.status(200).json({
-                    success : true,
-                    message:'Logged Successfully!!!'
+                user.generateToken((err, person)=>{
+                       if(!person){
+                            const error = new Error('Failed to Gererate Token');
+                            error.success = false;
+                            error.status = 401;
+                            return next(error);
+                        }                        
+                        res.status(200).cookie('auth', person.token).json({
+                            success : true,
+                            message:'Logged Successfully!!!',
+                            user:person
+                        })
                 })
+                
             });
             
             
@@ -57,3 +66,5 @@ exports.postLogin = (req, res, next) =>{
         next(err);
     })
 }
+
+
