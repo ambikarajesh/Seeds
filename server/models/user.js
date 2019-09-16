@@ -62,5 +62,15 @@ userSchema.methods.generateToken = function(callback){
         callback(err);
     })
 }
+
+userSchema.statics.verifyToken = function(token, callback){
+    jwt.verify(token, process.env.SECRETTOKEN, (err, person)=>{        
+        if(!person){
+            callback(err)   
+        }
+        callback(null, person);
+    })
+}
+
 userSchema.plugin(uniqueValidator);
 module.exports = mongoose.model("User", userSchema);

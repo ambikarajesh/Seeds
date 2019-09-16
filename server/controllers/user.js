@@ -68,3 +68,23 @@ exports.postLogin = (req, res, next) =>{
 }
 
 
+exports.getLogout = (req, res, next) => {
+    User.findById({_id:req.user._id}).then(user=>{
+        if(!user){
+            const error = new Error('No user Found');
+            error.success = false;
+            error.statusCode = 401;
+            return next(error);
+        }
+        user.token = '';
+        user.save().then(()=>{
+            res.clearCookie('auth').status(200).json({
+                sucess:true,
+                message:'Successfully Logout!!!'
+            })
+        })
+    })
+
+    
+
+}
