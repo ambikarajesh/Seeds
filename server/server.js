@@ -15,7 +15,11 @@ const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
-
+app.use('/api/product', (req, res)=>{
+    res.status(200).json({
+        name:'Ambika'
+    })
+});
 app.use('/api/user', userRouter);
 app.use((error, req, res, next)=>{
     res.status(error.statusCode).json({
