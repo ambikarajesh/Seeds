@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios';
+import {Switch, Route} from 'react-router';
+import Layout from './hoc/Layout';
+import Home from './container/Home';
 class App extends React.Component{
   componentDidMount(){
     axios.get('/api/product').then(res=>{
@@ -9,9 +12,11 @@ class App extends React.Component{
   }
   render(){
     return (
-      <div>
-        Hello
-      </div>
+      <Layout>
+        <Switch>
+            <Route path='/' exact component={Home}/>
+        </Switch>        
+      </Layout>
     );
   }
 }
