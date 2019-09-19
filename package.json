@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
-    "server": "nodemon server/server.js",    
+    "server": "nodemon server/server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
@@ -30,6 +30,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.0",
     "mongoose-unique-validator": "^2.0.3",
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.2",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1"
   }
 }

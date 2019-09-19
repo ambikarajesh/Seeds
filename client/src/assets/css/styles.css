@@ -1,0 +1,24 @@
+*{
+    margin:0;
+    padding: 0;
+}
+.Toolbar{
+    padding:10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+    height:75px;
+}
+.ToggleButton{
+    border:2px solid #424553;
+    padding:2px;
+    cursor: pointer;
+    width: 35px;
+}
+.ToggleButton > div{
+    background-color: #424553;
+    width:15px;
+    height: 1.5px;
+    margin:5px;
+}

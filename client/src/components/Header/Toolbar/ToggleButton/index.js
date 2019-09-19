@@ -1,8 +1,7 @@
 import React from 'react';
-import classes from './ToggleButton.module.css';
 const ToggleButton = () => {
     return (
-        <div className={classes.ToggleButton}>
+        <div className="ToggleButton">
             <div></div>
             <div></div>
             <div></div>
