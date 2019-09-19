@@ -4,17 +4,20 @@ import Logo from './Logo';
 import Search from './Search';
 import Cart from './Cart';
 import Login from './Login';
-import Logout from './Logout';
 class Toolbar extends Component {
     render() {
         return (
             <div className="Toolbar">
-                <ToggleButton/>
-                <Logo/>
+                <div>
+                    <ToggleButton/>
+                    <Logo/>
+                </div>                
                 <Search/>
+            <div>
                 <Cart/>
                 <Login/>
-                <Logout/>                
+            </div>
+                                
             </div>
         );
     }

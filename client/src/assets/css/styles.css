@@ -1,24 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Cute+Font&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 *{
     margin:0;
     padding: 0;
 }
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
 .Toolbar{
-    padding:10px;
+    width:100%;
+    height:53px;
     border-bottom: 1px solid #ccc;
+    padding:10px 0;    
     display: flex;
     justify-content: space-between;
-    width:100%;
-    height:75px;
+}
+.Toolbar > div {
+    display: flex;
 }
 .ToggleButton{
-    border:2px solid #424553;
-    padding:2px;
+    border:1.5px solid #9fa2ad;
     cursor: pointer;
-    width: 35px;
+    width:30px;
+    height:30px;
+    margin:0 10px;
 }
 .ToggleButton > div{
-    background-color: #424553;
-    width:15px;
-    height: 1.5px;
+    background-color:#9fa2ad;
+    width:18px;
+    height:1.5px;
     margin:5px;
 }
+.Logo{    
+    font-family: 'Cute Font', cursive;
+    font-size:18px;
+    margin-top: -5px;
+}
+.Logo > span{
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: -10px;
+}
+.search{
+    background-color: #ccc;
+    padding:0 10px;
+    border-radius: 5px 5px;
+}
+.form-control {    
+    border-radius: 0 0;
+    border:none;
+    background-color: #ccc;
+    font-size: 13px;
+}
+
+.form-control:focus {    
+    box-shadow: none;
+    background-color: #ccc;
+  }
+  .cart, .login{
+      margin:auto 20px;
+  }

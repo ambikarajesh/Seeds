@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 const Login = () => {
     return (
-        <div>
-            <FontAwesomeIcon icon={faUser} style = {{color:'green'}} size="2x" /> Login
+        <div className='login'>
+            <FontAwesomeIcon icon={faUser} size="1x" /> Login
         </div>
     );
 };

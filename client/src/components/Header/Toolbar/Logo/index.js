@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSeedling } from '@fortawesome/free-solid-svg-icons';
 const Logo = () => {
     return (
-        <div>
-           <FontAwesomeIcon icon={faSeedling} style = {{color:'green'}} size="2x" /> Seeds
+        <div className="Logo">
+           <FontAwesomeIcon icon={faSeedling} style = {{color:'#55A663'}} size="2x" /><span>Seeds</span>
         </div>
     );
 };
