@@ -1,7 +1,7 @@
 import React from 'react';
-const ToggleButton = () => {
+const ToggleButton = (props) => {
     return (
-        <div className="toggle_button">
+        <div className="toggle_button" onClick = {props.toggleButtonHandler}>
             <div></div>
             <div></div>
             <div></div>

@@ -1,13 +1,24 @@
 import React from 'react';
 import Toolbar from './Toolbar';
 import Sidebar from './Sidebar';
-const Header = () => {
-    return (
-        <React.Fragment>
-            <Toolbar/>
-            <Sidebar/>
-        </React.Fragment>
-    );
-};
+class Header extends React.Component{
+    state = {
+        showSidebar:false
+    }
+    toggleButtonHandler = () => {
+        console.log('click')
+        this.setState(state=>({
+            showSidebar : !state.showSidebar
+        }))
+    }
+    render(){
+        return (
+            <React.Fragment>
+                <Toolbar toggleButtonHandler = {this.toggleButtonHandler}/>
+                <Sidebar showSidebar = {this.state.showSidebar}/>
+            </React.Fragment>
+        );
+    }
+}
 
 export default Header;

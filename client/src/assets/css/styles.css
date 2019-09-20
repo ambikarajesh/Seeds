@@ -20,17 +20,17 @@ body{
     display: flex;
 }
 .toggle_button{
-    border:1.5px solid #9fa2ad;
+    border:1.5px solid #767980;
     cursor: pointer;
-    width:30px;
-    height:30px;
-    margin:0 10px;
+    width: 25px;
+    height:25px;
+    margin:5px 10px;
     display: block;
 }
 .toggle_button > div{
-    background-color:#9fa2ad;
-    width:18px;
-    height:1.5px;
+    background-color:#767980;
+    width:12px;
+    height:1px;
     margin:5px;
 }
 .logo{    
@@ -63,10 +63,32 @@ body{
   }
   .cart, .login{
       margin:auto 20px; 
-      display: inline;       
+      display: inline;      
+  }
+  .cart{
+      border-right:2px solid #9fa2ad;
+      padding:5px 30px 5px 5px;
   }
 
 
+  /* Sidebar */
+    .sidebar{
+        width:250px;
+        height:100%;
+        position: fixed;
+        left:0;
+        top:58px;
+        background-color:red;
+        transition: all 0.5s ease-in-out;
+        z-index: 20;
+    }
+    .hideSidebar{
+        transform: translateX(-100%);
+    }
+    .showSidebar{
+        transform: translateX(0);
+    }
+  
   @media (min-width:480px)  { 
     .toggle_button{
         display: none;
@@ -81,5 +103,6 @@ body{
     }
     .search{
         width:150px;
+        margin-left:40px;
     }
   }

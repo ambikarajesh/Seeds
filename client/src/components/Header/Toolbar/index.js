@@ -9,7 +9,7 @@ class Toolbar extends Component {
         return (
             <div className="toolbar">
                 <div>
-                    <ToggleButton/>
+                    <ToggleButton toggleButtonHandler = {this.props.toggleButtonHandler}/>
                     <Logo/>
                 </div>                
                 <Search/>
