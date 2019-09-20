@@ -7,17 +7,16 @@ import Login from './Login';
 class Toolbar extends Component {
     render() {
         return (
-            <div className="Toolbar">
+            <div className="toolbar">
                 <div>
                     <ToggleButton/>
                     <Logo/>
                 </div>                
                 <Search/>
-            <div>
-                <Cart/>
-                <Login/>
-            </div>
-                                
+                <div>
+                    <Cart/>
+                    <Login/>
+                </div>                                
             </div>
         );
     }
