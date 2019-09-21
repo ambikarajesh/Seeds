@@ -42,8 +42,9 @@ div > .toolbar_profile_container{
     font-size:18px;
     margin-top: -5px;
     margin-left: 10px;
+    cursor: pointer;
 }
-.logo > span{
+.logo > a > span{
     font-size: 25px;
     font-weight: bold;
     margin-left: -10px;
@@ -66,12 +67,16 @@ div > .toolbar_profile_container{
     box-shadow: none;
     background-color: #ccc;
   }
-  .cart, .login{
-      margin:auto 20px;  
+  .cart_btn, .login_btn{
+      margin:auto 20px;       
   }
-  .cart{
+  .cart_btn{
       border-right:2px solid #9fa2ad;
       padding:5px 30px 5px 5px;
+  }
+  .login_btn > a, .cart_btn > a, .logo > a{
+      color:inherit;
+      padding-left:5px;
   }
   
   /* Sidebar */
@@ -116,6 +121,7 @@ div > .toolbar_profile_container{
         top:0;
         background-color: rgba(1,1,1,0.6);
         z-index: 50;
+        display: none;
     }
   
   @media (min-width:480px)  { 
@@ -136,5 +142,8 @@ div > .toolbar_profile_container{
     }
     div > .toolbar_profile_container{
         display: none;
+    }
+    .backdrop{
+        display: block;
     }
   }

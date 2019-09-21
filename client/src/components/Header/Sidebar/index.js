@@ -1,6 +1,6 @@
 import React from 'react';
-import Cart from '../../Cart';
-import Login from '../../Login';
+import CartBtn from '../CartBtn';
+import LoginBtn from '../LoginBtn';
 import Backdrop from '../../UI/Backdrop';
 const Sidebar = (props) => { 
     const assignClasses = props.showSidebar ? ['sidebar', 'show_sidebar'] : ['sidebar', 'hide_sidebar']
@@ -12,8 +12,8 @@ const Sidebar = (props) => {
                     x
                 </div>
                 <div className='sidebar_profile_container'>
-                    <Cart/>
-                    <Login/>
+                    <CartBtn toggleButtonHandler = {props.toggleButtonHandler}/>
+                    <LoginBtn toggleButtonHandler = {props.toggleButtonHandler}/>
                 </div>           
             </div>
         </React.Fragment>

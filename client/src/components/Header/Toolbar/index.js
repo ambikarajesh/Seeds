@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ToggleButton from './ToggleButton';
 import Logo from './Logo';
 import Search from './Search';
-import Cart from '../../Cart';
-import Login from '../../Login';
+import CartBtn from '../CartBtn';
+import LoginBtn from '../LoginBtn';
 class Toolbar extends Component {
     render() {
         return (
@@ -14,8 +14,8 @@ class Toolbar extends Component {
                 </div>                
                 <Search/>
                 <div className='toolbar_profile_container'>
-                    <Cart/>
-                    <Login/>
+                    <CartBtn toggleButtonHandler = {this.props.toggleButtonHandler}/>
+                    <LoginBtn toggleButtonHandler = {this.props.toggleButtonHandler}/>
                 </div>                                
             </div>
         );
