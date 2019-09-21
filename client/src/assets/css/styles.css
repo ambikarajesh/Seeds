@@ -15,6 +15,7 @@ body{
     padding:10px 0;    
     display: flex;
     justify-content: space-between;
+    z-index: 10;
 }
 .toolbar > div {
     display: flex;
@@ -81,10 +82,11 @@ div > .toolbar_profile_container{
         padding:0 10px;
         left:0;
         top:0;
-        background-color:#aaa;
+        background-color:rgba(0,0,0,0.6);
         transition: all 0.5s ease-in-out;
-        z-index: 20;
+        z-index: 100;
         display: block;
+        color:#ccc;
     }
     .hide_sidebar{
         transform: translateX(-100%);
@@ -93,7 +95,7 @@ div > .toolbar_profile_container{
         transform: translateX(0);
     }
     .hide_sidebar_button{
-        border:1.5px solid #000;
+        border:1.5px solid #ccc;
         border-radius: 3px 3px;
         width:25px;
         padding:1px 7px;
@@ -105,6 +107,15 @@ div > .toolbar_profile_container{
     .sidebar_profile_container{
         display:flex;
         clear: right;
+    }
+    .backdrop{
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        left:0;
+        top:0;
+        background-color: rgba(1,1,1,0.6);
+        z-index: 50;
     }
   
   @media (min-width:480px)  { 
