@@ -15,7 +15,7 @@ class Header extends React.Component{
         return (
             <React.Fragment>
                 <Toolbar toggleButtonHandler = {this.toggleButtonHandler}/>
-                <Sidebar showSidebar = {this.state.showSidebar}/>
+                <Sidebar showSidebar = {this.state.showSidebar} toggleButtonHandler = {this.toggleButtonHandler}/>
             </React.Fragment>
         );
     }
