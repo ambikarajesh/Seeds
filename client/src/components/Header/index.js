@@ -13,10 +13,10 @@ class Header extends React.Component{
     }
     render(){
         return (
-            <React.Fragment>
+            <header>
                 <Toolbar toggleButtonHandler = {this.toggleButtonHandler}/>
                 <Sidebar showSidebar = {this.state.showSidebar} toggleButtonHandler = {this.toggleButtonHandler}/>
-            </React.Fragment>
+            </header>
         );
     }
 }

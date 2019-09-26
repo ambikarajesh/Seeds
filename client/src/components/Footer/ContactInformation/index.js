@@ -10,14 +10,14 @@ const ContactInformation = () => {
                     <FontAwesomeIcon icon={faCompass} className='icon' />
                     <div className='info'>
                         <div>Address</div>
-                        <div>Los Angeles-91360</div>
+                        <div>Massachusetts-01581</div>
                     </div>
                 </div>
                 <div className='tag'>
                     <FontAwesomeIcon icon={faPhone} className='icon' />
                     <div className='info'>
                         <div>Phone</div>
-                        <div>(890)384-3454</div>
+                        <div>(805)710-9045</div>
                     </div>
                 </div>
                 <div className='tag'>
