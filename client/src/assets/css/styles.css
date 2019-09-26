@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Cute+Font&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
 *{
     margin:0;
     padding: 0;
 }
 body{
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
 }
 .toolbar{
     width:100%;
@@ -43,6 +43,7 @@ div > .toolbar_profile_container{
     margin-top: -5px;
     margin-left: 10px;
     cursor: pointer;
+    display: inline-block;
 }
 .logo > a > span{
     font-size: 25px;
@@ -79,7 +80,7 @@ div > .toolbar_profile_container{
       padding-left:5px;
   }
   
-  /* Sidebar */
+  /* SIDEBAR */
     .sidebar{
         width:250px;
         height:100%;
@@ -123,7 +124,53 @@ div > .toolbar_profile_container{
         z-index: 50;
         display: none;
     }
-  
+
+    /* FOOTER */
+
+    footer{
+        position:absolute;
+        bottom:0;
+        width:100%;
+        background:#aaa;
+        text-align: center;
+    }
+    footer > div {
+     display: flex; 
+     padding-top:10px;
+    }
+    footer > div> div{
+        width:33.3%;
+    }
+    footer > div > div > h6{
+        font-weight: bold;
+    }
+    .footer_items{
+        border-top:1px solid #ccc;
+        border-bottom: 1px solid #ccc; 
+    }
+    footer .business_info {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    footer .business_info .tag {
+        flex-grow: 1;
+        position: relative;
+        width: 50%;
+        margin-bottom: 30px;
+        text-align: left;
+    }
+    footer .business_info .icon {
+        position: absolute;
+        font-size: 20px;
+        top:10px;
+        left:10px;
+    }
+    footer .business_info .info {
+        padding-left: 40px;
+    }
+
+
   @media (min-width:480px)  { 
     .toggle_button{
         display: none;
@@ -131,6 +178,7 @@ div > .toolbar_profile_container{
     .sidebar{
         display: none;
     }
+    
   }
   @media (max-width:480px){
     .logo{
@@ -145,5 +193,13 @@ div > .toolbar_profile_container{
     }
     .backdrop{
         display: block;
+    }    
+    footer > div {
+        display: block;
+    }
+    footer > div > div {
+        width: 100%;
     }
   }
+
+
