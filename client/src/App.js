@@ -5,6 +5,7 @@ import Layout from './hoc/Layout';
 import Home from './container/Home';
 import Login from './components/Login';
 import Cart from './components/Cart';
+import Register from './components/Register';
 import './assets/css/styles.css';
 class App extends React.Component{
   componentDidMount(){
@@ -18,6 +19,7 @@ class App extends React.Component{
         <Switch>
             <Route path='/cart' exact component={Cart}/>  
             <Route path='/login' exact component={Login}/>
+            <Route path='/register' exact component={Register}/>
             <Route path='/' exact component={Home}/>
         </Switch>        
       </Layout>

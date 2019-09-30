@@ -175,12 +175,17 @@ div > .toolbar_profile_container{
 
 
 
-    /* LOGIN */
-    .login_container{
-        width:75%;
+    /* REGISTER, LOGIN */
+    .login_container, .register_container{
         border:1px solid #ccc;
         border-radius: 5px 5px;
         margin:50px auto;
+    }
+    .login_container{
+        width: 60%;
+    }
+    .register_container{
+        width: 40%;
     }
     .page_title{
         background-color: #ccc;
@@ -190,11 +195,11 @@ div > .toolbar_profile_container{
     .login_types{
         display:flex;        
     }
-    .form_wrapper{
-        padding:20px;
+    .login_normal{
         width:50%;
-        margin:20px 50px;
-        
+    }
+    .form_wrapper{
+        margin:20px 50px;        
     }
     .pwd_href{
         float: right;
@@ -222,7 +227,9 @@ div > .toolbar_profile_container{
         align-items: center;  
         padding:10px;      
     }
-
+    a{
+        color:red;
+    }
     .right_error_alert{
         color:red;
         text-align: right;
@@ -236,6 +243,8 @@ div > .toolbar_profile_container{
         color:green;
         text-align: center;
     }
+
+    
 
   @media (min-width:480px)  { 
     .toggle_button{

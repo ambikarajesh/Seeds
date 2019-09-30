@@ -10,7 +10,7 @@ class Login extends React.Component {
         inputs:{            
             email:{
                 config:{
-                    label:"Your email", 
+                    label:"Email", 
                     icon:"envelope", 
                     type:"email", 
                     name:'email'
@@ -99,32 +99,34 @@ class Login extends React.Component {
             <div className='login_container'>
                 <h6 className='page_title'>Login</h6>
                 <div className='login_types'>
-                    <form className='form_wrapper'>
-                        {!this.state.formValid ?showError(this.state.formValidErr, this.state.formValid, 'center'): showError(this.state.formValidErr, this.state.formValid, 'center')}
-                        <div className="grey-text">
-                            {Object.keys(this.state.inputs).map((input, index)=>{
-                                return (<div key={index}>
-                                            <MDBInput
-                                                label={this.state.inputs[input].config.label}
-                                                icon={this.state.inputs[input].config.icon}
-                                                type={this.state.inputs[input].config.type}
-                                                row={this.state.inputs[input].config.row}
-                                                value={this.state.inputs[input].value}
-                                                onBlur={(event)=>this.inputHandler({event, name:this.state.inputs[input].config.name, blur:true})}
-                                                onChange={(event)=>this.inputHandler({event, name:this.state.inputs[input].config.name})}
-                                                key={index}
-                                                style={{color:'#666'}}
-                                            />
-                                            {showError(this.state.inputs[input].validationMsg, this.state.inputs[input].valid, "right")}
-                                        </div>)
-                            })}                    
-                        </div>
-                        <Link to='/forgotpassword' className='pwd_href'>Forgot Password?</Link>
-                        <div className='text_center'>
-                            <MDBBtn className='button' color="danger" onClick = {this.submitHandler}>Login</MDBBtn>
-                            <div>Don’t have an account yet?  <Link to='/register'>Register</Link></div>            
-                        </div>
-                    </form>
+                    <div className='login_normal'>
+                        <form className='form_wrapper'>
+                            {!this.state.formValid ?showError(this.state.formValidErr, this.state.formValid, 'center'): showError(this.state.formValidErr, this.state.formValid, 'center')}
+                            <div className="grey-text">
+                                {Object.keys(this.state.inputs).map((input, index)=>{
+                                    return (<div key={index}>
+                                                <MDBInput
+                                                    label={this.state.inputs[input].config.label}
+                                                    icon={this.state.inputs[input].config.icon}
+                                                    type={this.state.inputs[input].config.type}
+                                                    row={this.state.inputs[input].config.row}
+                                                    value={this.state.inputs[input].value}
+                                                    onBlur={(event)=>this.inputHandler({event, name:this.state.inputs[input].config.name, blur:true})}
+                                                    onChange={(event)=>this.inputHandler({event, name:this.state.inputs[input].config.name})}
+                                                    key={index}
+                                                    style={{color:'#666'}}
+                                                />
+                                                {showError(this.state.inputs[input].validationMsg, this.state.inputs[input].valid, "right")}
+                                            </div>)
+                                })}                    
+                            </div>
+                            <Link to='/forgotpassword' className='pwd_href'>Forgot Password?</Link>
+                            <div className='text_center'>
+                                <MDBBtn className='button' color="danger" onClick = {this.submitHandler}>Login</MDBBtn>
+                                <div>Don’t have an account yet?  <Link to='/register'>Register</Link></div>            
+                            </div>
+                        </form>
+                    </div>
                     <div className='login_fb_goo_btn'>
                         <h6>Login Using</h6>
                         <MDBBtn  color="primary" className='button'>

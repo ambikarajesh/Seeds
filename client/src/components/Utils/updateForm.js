@@ -10,41 +10,46 @@ const validateInput = (newInput, formData) => {
         const message = `${!valid ? 'Invalid Password':''}`;
         error = valid ? error : [valid, message];
     } 
-    if(newInput.validation.name){
+    if(newInput.validation.firstname){
         const valid = newInput.value.length >= 2;
         const message = `${!valid ? 'Min 2 chars long':''}`;
         error = valid ? error : [valid, message];
     }
-    if(newInput.validation.title){
-        const valid = newInput.value.length >= 5;
-        const message = `${!valid ? 'Min 5 chars long':''}`;
+    if(newInput.validation.lastname){
+        const valid = newInput.value.length >= 2;
+        const message = `${!valid ? 'Min 2 chars long':''}`;
         error = valid ? error : [valid, message];
     }
-    if(newInput.validation.languages){
-        const valid = newInput.value.length >= 4;
-        const message = `${!valid ? 'Min 4 chars long':''}`;
-        error = valid ? error : [valid, message];
-    }
-    if(newInput.validation.link){
-        const valid = newInput.value.length >= 10;
-        const message = `${!valid ? 'Min 10 chars long':''}`;
-        error = valid ? error : [valid, message];
-    }
-    if(newInput.validation.subject){
-        const valid = newInput.value.length >= 3;
-        const message = `${!valid ? 'Min 3 chars long':''}`;
-        error = valid ? error : [valid, message];
-    }
-    if(newInput.validation.message){
-        const valid = newInput.value.length >= 10;
-        const message = `${!valid ? 'Min 10 chars long':''}`;
-        error = valid ? error : [valid, message];
-    }
-    if(newInput.validation.required){
-        const valid = newInput.value.trim()!== '';
-        const message = `${!valid ? 'This field is required':''}`;
-        error = valid ? error : [valid, message];
-    }
+    // if(newInput.validation.title){
+    //     const valid = newInput.value.length >= 5;
+    //     const message = `${!valid ? 'Min 5 chars long':''}`;
+    //     error = valid ? error : [valid, message];
+    // }
+    // if(newInput.validation.languages){
+    //     const valid = newInput.value.length >= 4;
+    //     const message = `${!valid ? 'Min 4 chars long':''}`;
+    //     error = valid ? error : [valid, message];
+    // }
+    // if(newInput.validation.link){
+    //     const valid = newInput.value.length >= 10;
+    //     const message = `${!valid ? 'Min 10 chars long':''}`;
+    //     error = valid ? error : [valid, message];
+    // }
+    // if(newInput.validation.subject){
+    //     const valid = newInput.value.length >= 3;
+    //     const message = `${!valid ? 'Min 3 chars long':''}`;
+    //     error = valid ? error : [valid, message];
+    // }
+    // if(newInput.validation.message){
+    //     const valid = newInput.value.length >= 10;
+    //     const message = `${!valid ? 'Min 10 chars long':''}`;
+    //     error = valid ? error : [valid, message];
+    // }
+    // if(newInput.validation.required){
+    //     const valid = newInput.value.trim()!== '';
+    //     const message = `${!valid ? 'This field is required':''}`;
+    //     error = valid ? error : [valid, message];
+    // }
     return error;
 }
 export const updateInput = (element, formData) => {
