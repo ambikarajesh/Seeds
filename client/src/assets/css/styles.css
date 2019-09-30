@@ -177,16 +177,52 @@ div > .toolbar_profile_container{
 
     /* LOGIN */
     .login_container{
-        width:100%;
-        height: 100%;
-        padding:100px 50px;
-        background-color: rgba(20, 41, 51,1);
-        color:#fff;
+        width:75%;
+        border:1px solid #ccc;
+        border-radius: 5px 5px;
+        margin:50px auto;
+    }
+    .page_title{
+        background-color: #ccc;
+        padding: 15px;
+        font-weight: bold;
+    }
+    .login_types{
+        display:flex;        
     }
     .form_wrapper{
-        margin:0 auto;
-        width:100%;
+        padding:20px;
+        width:50%;
+        margin:20px 50px;
+        
     }
+    .pwd_href{
+        float: right;
+        color:#666;
+        font-weight: bold;
+        margin-top: -10px;
+    }
+    .pwd_href:hover{
+        color:#666;
+    }
+    .text_center{
+        clear: both;
+        text-align: center;
+    }
+    .button{
+        width:175px;
+        margin: 20px auto;
+    }
+    .login_fb_goo_btn{
+        width: 50%;
+        border-left:1px solid #ccc;
+        display: flex;
+        flex-direction: column;
+        margin:10px;
+        align-items: center;  
+        padding:10px;      
+    }
+
     .right_error_alert{
         color:red;
         text-align: right;
@@ -229,6 +265,18 @@ div > .toolbar_profile_container{
     }
     footer > div > div {
         width: 100%;
+    }
+    .login_types{
+        display:block;        
+    }
+    .form_wrapper{
+        width:100%;
+        padding:10px;
+        margin:0;
+    }
+    .login_fb_goo_btn{
+        width:100%;
+        border:none;
     }
   }
 
