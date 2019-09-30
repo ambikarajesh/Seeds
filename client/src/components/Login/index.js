@@ -1,7 +1,8 @@
 import React from "react";
-import { MDBContainer, MDBBtn, MDBInput } from 'mdbreact';
-import Zoom from 'react-reveal/Zoom';
-import Dialog from '@material-ui/core/Dialog';
+import { MDBBtn, MDBInput } from 'mdbreact';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faFacebookF, faGoogle} from '@fortawesome/free-brands-svg-icons';
+import {Link} from 'react-router-dom';
 import {updateInput, generateData, validateForm, clearInputs} from '../Utils/updateForm';
 // import * as actionCreators from '../../../store/actions';
 class Login extends React.Component {
@@ -95,10 +96,10 @@ class Login extends React.Component {
             return errorMsg;
         }      
         return (
-          <MDBContainer className='login_container'>
-                <Zoom duration={2000}>               
+            <div className='login_container'>
+                <h6 className='page_title'>Login</h6>
+                <div className='login_types'>
                     <form className='form_wrapper'>
-                        <p className="h5 text-center mb-4">ADMIN</p>
                         {!this.state.formValid ?showError(this.state.formValidErr, this.state.formValid, 'center'): showError(this.state.formValidErr, this.state.formValid, 'center')}
                         <div className="grey-text">
                             {Object.keys(this.state.inputs).map((input, index)=>{
@@ -112,18 +113,29 @@ class Login extends React.Component {
                                                 onBlur={(event)=>this.inputHandler({event, name:this.state.inputs[input].config.name, blur:true})}
                                                 onChange={(event)=>this.inputHandler({event, name:this.state.inputs[input].config.name})}
                                                 key={index}
-                                                style={{color:'#fff'}}
+                                                style={{color:'#666'}}
                                             />
                                             {showError(this.state.inputs[input].validationMsg, this.state.inputs[input].valid, "right")}
                                         </div>)
                             })}                    
                         </div>
-                        <div className="text-center">
-                        <MDBBtn style={{backgroundColor:'#43DDE0'}} onClick = {this.submitHandler}>Login</MDBBtn>            
+                        <Link to='/forgotpassword' className='pwd_href'>Forgot Password?</Link>
+                        <div className='text_center'>
+                            <MDBBtn className='button' color="danger" onClick = {this.submitHandler}>Login</MDBBtn>
+                            <div>Don’t have an account yet?  <Link to='/register'>Register</Link></div>            
                         </div>
-                    </form>  
-                    </Zoom>                                
-            </MDBContainer> 
+                    </form>
+                    <div className='login_fb_goo_btn'>
+                        <h6>Login Using</h6>
+                        <MDBBtn  color="primary" className='button'>
+                            <FontAwesomeIcon icon={faFacebookF} size="1x" style = {{color:'#fff'}}/> Facebook
+                        </MDBBtn>   
+                        <MDBBtn  color="danger" className='button'>
+                            <FontAwesomeIcon icon={faGoogle} size="1x" style = {{color:'#fff'}}/> Google
+                        </MDBBtn>   
+                    </div>
+                </div>
+            </div>
         );
     }
 };
