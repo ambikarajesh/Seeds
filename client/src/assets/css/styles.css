@@ -221,7 +221,6 @@ div > .toolbar_profile_container{
     .middle_or{
         line-height: 200px;
         text-align:center;
-        font-weight: bold;
         font-size: 20px;
         color:red;
     }
@@ -232,6 +231,7 @@ div > .toolbar_profile_container{
         align-items: center;  
         padding:10px;      
     }
+    
     a{
         color:red;
     }

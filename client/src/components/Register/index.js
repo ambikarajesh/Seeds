@@ -2,7 +2,9 @@ import React from "react";
 import { MDBBtn, MDBInput } from 'mdbreact';
 import {Link} from 'react-router-dom';
 import {updateInput, generateData, validateForm, clearInputs} from '../Utils/updateForm';
+import * as actionCreators from '../../store/actions/';
 // import * as actionCreators from '../../../store/actions';
+import {connect} from 'react-redux';
 class Register extends React.Component {
     state = {
         inputs:{ 
@@ -38,7 +40,6 @@ class Register extends React.Component {
                 touched:false,
                 validationMsg:""
             },
-
             email:{
                 config:{
                     label:"Email", 
@@ -83,21 +84,20 @@ class Register extends React.Component {
     submitHandler = () => {
         const submitData = generateData(this.state.inputs);
         const validForm = validateForm(this.state.inputs);
-        if(validForm){  
-            console.log(submitData)
-            // this.props.dispatch(actionCreators.fetchUser(submitData)).then(res=>{
-            //     if(res.payload.status === '00'){
-            //         this.setState({formValid:true, formSuccess:true, formValidErr:res.payload.message})
-            //         setTimeout(()=>{                        
-            //             this.handleClose();
-            //             this.props.dispatch(actionCreators.setUserId(res.payload.userId));
-            //         }, 500)
-            //     }else{
-            //         this.setState({formValid:false, formValidErr:res.payload.message})
-            //     } 
-            // }).catch(err=>{                        
-            //     this.setState({formValid:false, formValidErr:'Invalid Inputs'})
-            // })
+        if(validForm){
+            this.props.dispatch(actionCreators.regUser(submitData)).then(res=>{
+                console.log('res=', res)
+                if(res.payload.success === true){
+                    this.setState({formValid:true, formSuccess:true, formValidErr:res.payload.message})
+                    setTimeout(()=>{                        
+                        this.props.history.push('/login')
+                    }, 1000)
+                }else{
+                    this.setState({formValid:false, formValidErr:res.payload.response.data.message})
+                } 
+            }).catch(err=> {                        
+                    this.setState({formValid:false, formValidErr:'Invalid Inputs'})
+            })            
         }else{
             this.setState({formValid:false, formValidErr:'Invalid Inputs'}) 
         }
@@ -105,8 +105,7 @@ class Register extends React.Component {
     }
     handleClose = () => {        
         const inputs = clearInputs(this.state.inputs); 
-        this.setState({inputs:inputs, formValidErr:false, formValid:true, formSuccess:false}) 
-        this.props.onClose();
+        this.setState({inputs:inputs, formValidErr:false, formValid:true, formSuccess:false});
     };
     render(){  
         const showError = (errMessage, errorValid, position) => {
@@ -137,13 +136,15 @@ class Register extends React.Component {
                                             <MDBInput
                                                 label={this.state.inputs[input].config.label}
                                                 icon={this.state.inputs[input].config.icon}
+                                          
+                                          
                                                 type={this.state.inputs[input].config.type}
                                                 row={this.state.inputs[input].config.row}
                                                 value={this.state.inputs[input].value}
                                                 onBlur={(event)=>this.inputHandler({event, name:this.state.inputs[input].config.name, blur:true})}
                                                 onChange={(event)=>this.inputHandler({event, name:this.state.inputs[input].config.name})}
                                                 key={index}
-                                                style={{color:'#666'}}
+                                                style={{color:'#666', paddingTop:'15px'}}
                                             />
                                             {showError(this.state.inputs[input].validationMsg, this.state.inputs[input].valid, "right")}
                                         </div>)
@@ -158,4 +159,4 @@ class Register extends React.Component {
     }
 };
 
-export default Register;
+export default connect()(Register);

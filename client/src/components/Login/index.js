@@ -3,8 +3,9 @@ import { MDBBtn, MDBInput } from 'mdbreact';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faFacebookF, faGoogle} from '@fortawesome/free-brands-svg-icons';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {updateInput, generateData, validateForm, clearInputs} from '../Utils/updateForm';
-// import * as actionCreators from '../../../store/actions';
+import * as actionCreators from '../../store/actions';
 class Login extends React.Component {
     state = {
         inputs:{            
@@ -52,21 +53,21 @@ class Login extends React.Component {
     submitHandler = () => {
         const submitData = generateData(this.state.inputs);
         const validForm = validateForm(this.state.inputs);
-        if(validForm){  
-            console.log(submitData)
-            // this.props.dispatch(actionCreators.fetchUser(submitData)).then(res=>{
-            //     if(res.payload.status === '00'){
-            //         this.setState({formValid:true, formSuccess:true, formValidErr:res.payload.message})
-            //         setTimeout(()=>{                        
-            //             this.handleClose();
-            //             this.props.dispatch(actionCreators.setUserId(res.payload.userId));
-            //         }, 500)
-            //     }else{
-            //         this.setState({formValid:false, formValidErr:res.payload.message})
-            //     } 
-            // }).catch(err=>{                        
-            //     this.setState({formValid:false, formValidErr:'Invalid Inputs'})
-            // })
+        if(validForm){
+            this.props.dispatch(actionCreators.loginUser(submitData)).then(res=>{
+                console.log('res=', res)
+                if(res.payload.success === true){
+                    this.setState({formValid:true, formSuccess:true, formValidErr:res.payload.message})
+                    setTimeout(()=>{  
+                        this.props.dispatch(actionCreators.setUserId(res.payload.user._id))                     
+                        this.props.history.push('/')
+                    }, 1000)
+                }else{
+                    this.setState({formValid:false, formValidErr:res.payload.response.data.message})
+                } 
+            }).catch(err=> {                        
+                    this.setState({formValid:false, formValidErr:'Invalid Inputs'})
+            })            
         }else{
             this.setState({formValid:false, formValidErr:'Invalid Inputs'}) 
         }
@@ -74,8 +75,7 @@ class Login extends React.Component {
     }
     handleClose = () => {        
         const inputs = clearInputs(this.state.inputs); 
-        this.setState({inputs:inputs, formValidErr:false, formValid:true, formSuccess:false}) 
-        this.props.onClose();
+        this.setState({inputs:inputs, formValidErr:false, formValid:true, formSuccess:false});
     };
     render(){  
         const showError = (errMessage, errorValid, position) => {
@@ -114,7 +114,7 @@ class Login extends React.Component {
                                                     onBlur={(event)=>this.inputHandler({event, name:this.state.inputs[input].config.name, blur:true})}
                                                     onChange={(event)=>this.inputHandler({event, name:this.state.inputs[input].config.name})}
                                                     key={index}
-                                                    style={{color:'#666'}}
+                                                    style={{color:'#666', paddingTop:'15px'}}
                                                 />
                                                 {showError(this.state.inputs[input].validationMsg, this.state.inputs[input].valid, "right")}
                                             </div>)
@@ -145,4 +145,4 @@ class Login extends React.Component {
     }
 };
 
-export default Login;
+export default connect()(Login);
