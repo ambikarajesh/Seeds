@@ -127,6 +127,9 @@ class Login extends React.Component {
                             </div>
                         </form>
                     </div>
+                    <div className='middle_or'>
+                        (or)
+                    </div>
                     <div className='login_fb_goo_btn'>
                         <h6>Login Using</h6>
                         <MDBBtn  color="primary" className='button'>

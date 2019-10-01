@@ -218,12 +218,17 @@ div > .toolbar_profile_container{
         width:175px;
         margin: 20px auto;
     }
+    .middle_or{
+        line-height: 200px;
+        text-align:center;
+        font-weight: bold;
+        font-size: 20px;
+        color:red;
+    }
     .login_fb_goo_btn{
         width: 50%;
-        border-left:1px solid #ccc;
         display: flex;
         flex-direction: column;
-        margin:10px;
         align-items: center;  
         padding:10px;      
     }
@@ -257,6 +262,8 @@ div > .toolbar_profile_container{
     }
     
   }
+    
+
   @media (max-width:480px){
     .logo{
         margin-left: 0;
@@ -290,13 +297,46 @@ div > .toolbar_profile_container{
         padding:10px;
         margin:0;
     }
+    .middle_or{
+        line-height: 50px;
+    }
     .login_fb_goo_btn{
         width:100%;
-        border:none;
     }
     .register_container{
         width:90%;
     }
   }
 
+@media only screen and (max-width : 768px) {
+    .login_container{
+        width:90%;
+    }
+}
+
+
+/* Custom, iPhone Retina */ 
+/* @media only screen and (min-width : 320px) {
+
+} */
+
+/* Extra Small Devices, Phones */ 
+/* @media only screen and (min-width : 480px) {
+
+} */
+
+/* Small Devices, Tablets */
+/* @media only screen and (min-width : 768px) {
+
+} */
+
+/* Medium Devices, Desktops */
+/* @media only screen and (min-width : 992px) {
+
+} */
+
+/* Large Devices, Wide Screens */
+/* @media only screen and (min-width : 1200px) {
+
+} */
 
