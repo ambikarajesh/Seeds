@@ -46,8 +46,9 @@ exports.postLogin = (req, res, next) =>{
                             error.success = false;
                             error.status = 401;
                             return next(error);
-                        }                        
-                        res.status(200).cookie('auth', person.token).json({
+                        } 
+                                             
+                        res.status(200).cookie('auth', person.token).cookie('userId', person._id).json({
                             success : true,
                             message:'Logged Successfully!!!',
                             user:person
@@ -78,8 +79,8 @@ exports.getLogout = (req, res, next) => {
         }
         user.token = '';
         user.save().then(()=>{
-            res.clearCookie('auth').status(200).json({
-                sucess:true,
+            res.clearCookie('auth').clearCookie('userId').status(200).json({
+                success:true,
                 message:'Successfully Logout!!!'
             })
         })

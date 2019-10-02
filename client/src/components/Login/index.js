@@ -55,11 +55,10 @@ class Login extends React.Component {
         const validForm = validateForm(this.state.inputs);
         if(validForm){
             this.props.dispatch(actionCreators.loginUser(submitData)).then(res=>{
-                console.log('res=', res)
                 if(res.payload.success === true){
                     this.setState({formValid:true, formSuccess:true, formValidErr:res.payload.message})
                     setTimeout(()=>{  
-                        this.props.dispatch(actionCreators.setUserId(res.payload.user._id))                     
+                        this.props.dispatch(actionCreators.setUserInfo(res.payload.user._id, res.payload.user.token))                     
                         this.props.history.push('/')
                     }, 1000)
                 }else{

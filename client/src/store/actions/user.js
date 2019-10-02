@@ -1,6 +1,7 @@
 import * as actionTypes from '../types';
 import axios from 'axios';
 import {SERVER} from '../../components/Utils/misc';
+import Cookies from 'js-cookie';
 export const regUser = (user) => {
     const req = axios.post(`${SERVER}/user/register`, user).then(res=> res.data).catch(err=> err);
     return {
@@ -16,15 +17,39 @@ export const loginUser = (user) => {
         payload:req
     }
 }
-export const setUserIdSuccess = (userId) => {
+export const setUserInfoSuccess = (userId, token) => {
     return {
-        type:actionTypes.SET_USERID_SUCCESS,
-        userId : userId
+        type:actionTypes.SET_USERINFO_SUCCESS,
+        userId : userId,
+        token:token
     }
 }
 
-export const setUserId = (userId) => {
+export const setUserInfo = (userId, token) => {
     return dispatch => {
-        dispatch(setUserIdSuccess(userId))
+        dispatch(setUserInfoSuccess(userId, token))
     }
+}
+
+
+export const retainState = () => {
+    return dispatch => {
+        const token = Cookies.get('auth');
+        if(token){
+            const userId = Cookies.get('userId');
+            dispatch(setUserInfoSuccess(userId, token));
+        }         
+    }
+}
+
+export const logout = ()=> {
+    return dispatch => {
+    axios.get(`${SERVER}/user/logout`).then(res=> {
+        if(res.data.success === true){              
+                dispatch({
+                    type:actionTypes.LOGOUT
+                })
+            }
+        })           
+    }         
 }
