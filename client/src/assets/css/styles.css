@@ -7,7 +7,9 @@ body{
     font-family: 'Roboto Mono', monospace;
     font-size: 12px;
 }
-
+main{
+    min-height: 100%;
+}
 
 /* TOOLBAR */
 .toolbar{
@@ -131,11 +133,12 @@ div > .toolbar_profile_container{
     /* FOOTER */
 
     footer{
-        position:absolute;
+        position: relative;;
         bottom:0;
         width:100%;
         background:#aaa;
         text-align: center;
+        overflow: hidden;
     }
     footer > div {
      display: flex; 
