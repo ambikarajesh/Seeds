@@ -6,6 +6,12 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {updateInput, generateData, validateForm, clearInputs} from '../Utils/updateForm';
 import * as actionCreators from '../../store/actions';
+import { OldSocialLogin as SocialLogin } from 'react-social-login'
+ 
+const handleSocialLogin = (user, err) => {
+  console.log(user)
+  console.log(err)
+}
 class Login extends React.Component {
     state = {
         inputs:{            
@@ -131,12 +137,24 @@ class Login extends React.Component {
                     </div>
                     <div className='login_fb_goo_btn'>
                         <h6>Login Using</h6>
-                        <MDBBtn  color="primary" className='button'>
-                            <FontAwesomeIcon icon={faFacebookF} size="1x" style = {{color:'#fff'}}/> Facebook
-                        </MDBBtn>   
+                        <SocialLogin
+                            provider='facebook'
+                            appId='939521323091074'
+                            callback={handleSocialLogin}
+                            >
+                                <MDBBtn  color="primary" className='button'>
+                                    <FontAwesomeIcon icon={faFacebookF} size="1x" style = {{color:'#fff'}}/> Facebook
+                                </MDBBtn>  
+                        </SocialLogin> 
+                        <SocialLogin
+                            provider='google'
+                            appId='48626095239-issv8mfrtg1ou228bquj0vubtngeq4sa.apps.googleusercontent.com'
+                            callback={handleSocialLogin}
+                            >
                         <MDBBtn  color="danger" className='button'>
                             <FontAwesomeIcon icon={faGoogle} size="1x" style = {{color:'#fff'}}/> Google
-                        </MDBBtn>   
+                        </MDBBtn>  
+                        </SocialLogin>
                     </div>
                 </div>
             </div>
