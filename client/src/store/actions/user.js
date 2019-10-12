@@ -61,3 +61,10 @@ export const loginFBUser = (userId, accessToken) => {
         payload:req
     }
 }
+export const loginGOOUser = (userId, idToken) => {
+    const req = axios.post(`${SERVER}/user/goo_login`, {userId:userId, idToken:idToken}).then(res=> res.data).catch(err=> err);
+    return {
+        type:actionTypes.LOGIN_GOO_USER,
+        payload:req
+    }
+}

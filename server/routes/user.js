@@ -9,6 +9,7 @@ router.post('/login', userController.postLogin);
 router.get('/logout', authMiddleware, userController.getLogout);
 
 router.post('/fb_login', userController.postFaceBookLogin);
+router.post('/goo_login', userController.postGoogleLogin);
 
 module.exports = router;
 

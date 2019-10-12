@@ -9,11 +9,7 @@ import * as actionCreators from '../../store/actions';
 import { OldSocialLogin as SocialLogin } from 'react-social-login'
  
 
-const handleGoogleLogin = (user, err) => {
-    console.log('google')
-    console.log(user)
-    console.log(err)
-}
+
 class Login extends React.Component {
   state = {
         inputs:{            
@@ -71,7 +67,22 @@ class Login extends React.Component {
         })            
     }
 
-
+    handleGoogleLogin = (user, err) => {
+        console.log(user)
+        this.props.dispatch(actionCreators.loginGOOUser(user._profile.id, user._token.idToken)).then(res=>{
+            if(res.payload.success === true){
+                this.setState({formValid:true, formSuccess:true, formValidErr:res.payload.message})
+                setTimeout(()=>{  
+                    this.props.dispatch(actionCreators.setUserInfo(res.payload.user._id, res.payload.user.token))                     
+                    this.props.history.push('/')
+                }, 1000)
+            }else{
+                this.setState({formValid:false, formValidErr:res.payload.response.data.message})
+            } 
+        }).catch(err=> {                        
+                this.setState({formValid:false, formValidErr:'Invalid Inputs'})
+        })            
+    }
 
 
     inputHandler = (element) =>{
@@ -171,7 +182,7 @@ class Login extends React.Component {
                         <SocialLogin
                             provider='google'
                             appId='48626095239-issv8mfrtg1ou228bquj0vubtngeq4sa.apps.googleusercontent.com'
-                            callback={handleGoogleLogin}
+                            callback={this.handleGoogleLogin}
                             >
                         <MDBBtn  color="danger" className='button'>
                             <FontAwesomeIcon icon={faGoogle} size="1x" style = {{color:'#fff'}}/> Google

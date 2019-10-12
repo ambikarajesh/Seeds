@@ -34,6 +34,11 @@ const reducer = (state=initialState, action)=>{
                                       ...state,
                                       payload:action.payload
                                     }
+        case actionTypes.LOGIN_GOO_USER: 
+                                    return {
+                                      ...state,
+                                      payload:action.payload
+                                    }
         default:
             return state;
     }

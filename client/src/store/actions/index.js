@@ -1,1 +1,1 @@
-export {regUser, loginUser, setUserInfo, retainState, logout, loginFBUser} from './user';
+export {regUser, loginUser, setUserInfo, retainState, logout, loginFBUser, loginGOOUser} from './user';
