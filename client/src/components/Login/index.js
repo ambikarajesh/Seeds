@@ -8,12 +8,14 @@ import {updateInput, generateData, validateForm, clearInputs} from '../Utils/upd
 import * as actionCreators from '../../store/actions';
 import { OldSocialLogin as SocialLogin } from 'react-social-login'
  
-const handleSocialLogin = (user, err) => {
-  console.log(user)
-  console.log(err)
+
+const handleGoogleLogin = (user, err) => {
+    console.log('google')
+    console.log(user)
+    console.log(err)
 }
 class Login extends React.Component {
-    state = {
+  state = {
         inputs:{            
             email:{
                 config:{
@@ -52,6 +54,26 @@ class Login extends React.Component {
         formValidErr:false,
         formSuccess:false
     }
+
+    handleFacebookLogin = (user, err) => {
+        this.props.dispatch(actionCreators.loginFBUser(user._profile.id, user._token.accessToken)).then(res=>{
+            if(res.payload.success === true){
+                this.setState({formValid:true, formSuccess:true, formValidErr:res.payload.message})
+                setTimeout(()=>{  
+                    this.props.dispatch(actionCreators.setUserInfo(res.payload.user._id, res.payload.user.token))                     
+                    this.props.history.push('/')
+                }, 1000)
+            }else{
+                this.setState({formValid:false, formValidErr:res.payload.response.data.message})
+            } 
+        }).catch(err=> {                        
+                this.setState({formValid:false, formValidErr:'Invalid Inputs'})
+        })            
+    }
+
+
+
+
     inputHandler = (element) =>{
         const updateInputs = updateInput(element, this.state.inputs);
         this.setState({inputs:updateInputs})
@@ -140,7 +162,7 @@ class Login extends React.Component {
                         <SocialLogin
                             provider='facebook'
                             appId='939521323091074'
-                            callback={handleSocialLogin}
+                            callback={this.handleFacebookLogin}
                             >
                                 <MDBBtn  color="primary" className='button'>
                                     <FontAwesomeIcon icon={faFacebookF} size="1x" style = {{color:'#fff'}}/> Facebook
@@ -149,7 +171,7 @@ class Login extends React.Component {
                         <SocialLogin
                             provider='google'
                             appId='48626095239-issv8mfrtg1ou228bquj0vubtngeq4sa.apps.googleusercontent.com'
-                            callback={handleSocialLogin}
+                            callback={handleGoogleLogin}
                             >
                         <MDBBtn  color="danger" className='button'>
                             <FontAwesomeIcon icon={faGoogle} size="1x" style = {{color:'#fff'}}/> Google

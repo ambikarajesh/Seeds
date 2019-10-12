@@ -6,7 +6,6 @@ class Header extends React.Component{
         showSidebar:false
     }
     toggleButtonHandler = () => {
-        console.log('click')
         this.setState(state=>({
             showSidebar : !state.showSidebar
         }))

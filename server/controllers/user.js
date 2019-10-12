@@ -1,3 +1,4 @@
+const axios = require('axios');
 const User = require('../models/user');
 
 exports.postRegister = (req, res, next)=>{
@@ -88,4 +89,59 @@ exports.getLogout = (req, res, next) => {
 
     
 
+}
+
+exports.postFaceBookLogin = (req, res, next) => {
+    axios.get(`https://graph.facebook.com/me?access_token=${req.body.accessToken}&fields=email%2Cname%2Cid%2Cfirst_name%2Clast_name%2Cpicture&method=get&pretty=0&sdk=joey&suppress_http_code=1`).then(response=>{
+    if(response.data.id === req.body.userId){
+        User.findOne({email:response.data.email}).then(user=>{
+           if(!user){
+                //register new user
+
+                const newuser = new User({firstname:response.data.first_name, lastname:response.data.last_name, email:response.data.email, password:response.data.id});
+                newuser.save().then(result =>{        
+                    result.generateToken((err, person)=>{
+                       if(!person){
+                            const error = new Error('Failed to Gererate Token');
+                            error.success = false;
+                            error.status = 401;
+                            return next(error);
+                        }                                              
+                        res.status(200).cookie('auth', person.token).cookie('userId', person._id).json({
+                            success : true,
+                            message:'Successfully Logged In using Facebook!!!',
+                            user:person
+                        })
+                    })
+                }).catch(err=>{
+                    console.log(err)
+                })
+            }
+            user.generateToken((err, person)=>{
+                if(!person){
+                     const error = new Error('Failed to Gererate Token');
+                     error.success = false;
+                     error.status = 401;
+                     return next(error);
+                 }                                              
+                 res.status(200).cookie('auth', person.token).cookie('userId', person._id).json({
+                     success : true,
+                     message:'Successfully Logged In using Facebook!!!',
+                     user:person
+                 })
+             })
+
+        })
+           
+        }
+    }).catch(err=>{
+        if(!err.statusCode){
+            err.message = 'Internal Server Error';
+            err.success = false;
+            err.statusCode = 500;            
+        }
+        next(err);
+    })
+
+    
 }

@@ -29,6 +29,11 @@ const reducer = (state=initialState, action)=>{
                                       userId:null,
                                       token:null
                                     }
+        case actionTypes.LOGIN_FB_USER: 
+                                    return {
+                                      ...state,
+                                      payload:action.payload
+                                    }
         default:
             return state;
     }

@@ -13,7 +13,7 @@ export const regUser = (user) => {
 export const loginUser = (user) => {
     const req = axios.post(`${SERVER}/user/login`, user).then(res=> res.data).catch(err=> err);
     return {
-        type:actionTypes.REG_USER,
+        type:actionTypes.LOGIN_USER,
         payload:req
     }
 }
@@ -52,4 +52,12 @@ export const logout = ()=> {
             }
         })           
     }         
+}
+
+export const loginFBUser = (userId, accessToken) => {
+    const req = axios.post(`${SERVER}/user/fb_login`, {userId:userId, accessToken:accessToken}).then(res=> res.data).catch(err=> err);
+    return {
+        type:actionTypes.LOGIN_FB_USER,
+        payload:req
+    }
 }

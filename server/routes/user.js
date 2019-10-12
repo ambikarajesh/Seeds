@@ -7,6 +7,9 @@ const router = express.Router();
 router.post('/register', userController.postRegister);
 router.post('/login', userController.postLogin);
 router.get('/logout', authMiddleware, userController.getLogout);
+
+router.post('/fb_login', userController.postFaceBookLogin);
+
 module.exports = router;
 
 
