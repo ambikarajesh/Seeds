@@ -11,9 +11,14 @@ const validateInput = (newInput, formData) => {
         error = valid ? error : [valid, message];
     } 
     if(newInput.validation.confirmpwd){
-        const valid = newInput.value === formData.newPassword.value;
-        const message = `${!valid ? 'Not Match':''}`;
+        const valid = newInput.value.match(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/) !== null;
+        const message = `${!valid ? 'Invalid Password':''}`;
         error = valid ? error : [valid, message];
+        if(typeof formData.password.value !== 'undefined'){
+            const valid = newInput.value === formData.password.value;
+            const message = `${!valid ? 'Not Match':''}`;
+            error = valid ? error : [valid, message];
+        }
     }
     if(newInput.validation.firstname){
         const valid = newInput.value.length >= 2;
@@ -66,20 +71,4 @@ export const clearInputs = (oldInputs) => {
         inputs[input].validationMsg = ''
     })
     return inputs;
-}
-
-export const validateImage = (oldImage) => {
-    const image = {...oldImage};
-    if(image.name!==''){
-        image.valid = true;
-        image.validationMsg = ''
-    }
-    return image.valid;
-}
-export const clearFile = (oldImage) => {
-    const image = {...oldImage}
-    image.name = '';
-    image.valid = false;
-    image.validationMsg = 'upload image';
-    return image;
 }

@@ -71,6 +71,22 @@ class Register extends React.Component {
                 valid:false,
                 touched:false,
                 validationMsg:""
+            },
+            confirmPassword:{
+                config:{
+                    label:"Confirm Password", 
+                    icon:"lock", 
+                    type:"password", 
+                    name:'confirmPassword'
+                },                 
+                value:'',
+                validation:{
+                    required:true,
+                    confirmpwd:true
+                },
+                valid:false,
+                touched:false,
+                validationMsg:""
             }
         },
         formValid:true,
@@ -85,7 +101,12 @@ class Register extends React.Component {
         const submitData = generateData(this.state.inputs);
         const validForm = validateForm(this.state.inputs);
         if(validForm){
-            this.props.dispatch(actionCreators.regUser(submitData)).then(res=>{
+            this.props.dispatch(actionCreators.regUser({
+                firstname:submitData.firstname,
+                lastname:submitData.lastname,
+                email:submitData.email,
+                password:submitData.password
+            })).then(res=>{
                 console.log('res=', res)
                 if(res.payload.success === true){
                     this.setState({formValid:true, formSuccess:true, formValidErr:res.payload.message})

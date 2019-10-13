@@ -6,12 +6,12 @@ import {connect} from 'react-redux';
 class NewPwdSet extends React.Component {
     state = {
         inputs:{ 
-            newPassword:{
+            password:{
                 config:{
                     label:"New Password", 
                     icon:"lock", 
                     type:"password", 
-                    name:'newPassword'
+                    name:'password'
                 },                 
                 value:'',
                 validation:{
@@ -51,16 +51,15 @@ class NewPwdSet extends React.Component {
         const submitData = generateData(this.state.inputs);
         const validForm = validateForm(this.state.inputs);
         if(validForm){
-            this.props.dispatch(actionCreators.newPwdSet(submitData.newPassword, this.props.match.params.token)).then(res=>{
-                console.log(res)
-                // if(res.payload.success === true){
-                //     this.setState({formValid:true, formSuccess:true, formValidErr:res.payload.message})
-                //         setTimeout(()=>{                        
-                //             this.props.history.push('/login')
-                //         }, 1000)
-                // }else{
-                //     this.setState({formValid:false, formValidErr:res.payload.response.data.message})
-                // } 
+            this.props.dispatch(actionCreators.newPwdSet(submitData.password, this.props.match.params.token)).then(res=>{
+               if(res.payload.success === true){
+                    this.setState({formValid:true, formSuccess:true, formValidErr:res.payload.message})
+                        setTimeout(()=>{                        
+                            this.props.history.push('/login')
+                        }, 1000)
+                }else{
+                    this.setState({formValid:false, formValidErr:res.payload.response.data.message})
+                } 
             }).catch(err=>{
                 this.setState({formValid:false, formValidErr:'Invalid Input'})
             })
