@@ -39,6 +39,11 @@ const reducer = (state=initialState, action)=>{
                                       ...state,
                                       payload:action.payload
                                     }
+          case actionTypes.FORGOT_PWD: 
+                                    return {
+                                      ...state,
+                                      payload:action.payload
+                                    }
         default:
             return state;
     }

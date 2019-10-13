@@ -68,3 +68,11 @@ export const loginGOOUser = (userId, idToken) => {
         payload:req
     }
 }
+
+export const pwdReset = (email) => {
+    const req = axios.post(`${SERVER}/user/pwd_reset`, email).then(res=> res.data).catch(err=> err);
+    return {
+        type:actionTypes.FORGOT_PWD,
+        payload:req
+    }
+}

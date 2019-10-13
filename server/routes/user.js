@@ -11,6 +11,8 @@ router.get('/logout', authMiddleware, userController.getLogout);
 router.post('/fb_login', userController.postFaceBookLogin);
 router.post('/goo_login', userController.postGoogleLogin);
 
+
+router.post('/pwd_reset', userController.postPwdReset);
 module.exports = router;
 
 

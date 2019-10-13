@@ -1,8 +1,11 @@
 const axios = require('axios');
 const User = require('../models/user');
 const dotenv = require('dotenv');
-dotenv.config();
+const crypto = require('crypto');
+const sgMail = require('@sendgrid/mail');
 
+dotenv.config();
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 exports.postRegister = (req, res, next)=>{
     const user = new User(req.body);
     user.save().then(result =>{        
@@ -193,4 +196,52 @@ exports.postGoogleLogin = (req, res, next) => {
         }
         next(err);
     })
+}
+
+exports.postPwdReset = (req, res, next) => {    
+    User.findOne({email:req.body.email}).then((user)=>{
+       if(!user){
+            const error = new Error('Invalid User!!!');
+            error.success = false;
+            error.statusCode = 401;
+            throw next(error);
+        }
+        crypto.randomBytes(15, (err, buffer)=>{
+            const token = buffer.toString('hex');
+            user.resetToken = token;            
+            user.resetTokenExpire = Date.now() + 3600000;
+            user.save((err)=>{
+                if(err){
+                    console.log(err)
+                }
+                const mail = {
+                    to: req.body.email,
+                    from: 'seeds@gmail.com',
+                    subject: 'Reset Password Link',
+                    text: 'you did reset password in sweetstore.com',
+                    html: `<b>please click the following <a href="http://localhost:3000/reset/${token}">link</a> for reset password</b>`
+                }
+                sgMail.send(mail).then(result=>{
+                    console.log(result)                   
+                    console.log('success')
+                    res.status(200).json({
+                        success : true,
+                        message:'Successfully Send Email!!!',
+                    })
+                }).catch(err=>{
+                    console.log(err)
+                })
+            })
+        })
+       
+
+    }).catch(err=>{
+        if(!err.statusCode){
+            err.message = 'Internal Server Error';
+            err.success = false;
+            err.statusCode = 500;            
+        }
+        next(err);
+    })
+    
 }

@@ -25,6 +25,12 @@ const userSchema = new Schema({
     },
     token:{
         type:String
+    },
+    resetToken: {
+        type:String
+    },
+    resetTokenExpire:{
+        type:Date
     }
 
 }, {timestamps:true});

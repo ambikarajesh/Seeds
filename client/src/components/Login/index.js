@@ -158,7 +158,7 @@ class Login extends React.Component {
                                             </div>)
                                 })}                    
                             </div>
-                            <Link to='/forgotpassword' className='pwd_href'>Forgot Password?</Link>
+                            <Link to='/pwdreset' className='pwd_href'>Forgot Password?</Link>
                             <div className='text_center'>
                                 <MDBBtn className='button' color="danger" onClick = {this.submitHandler}>Login</MDBBtn>
                                 <div>Don’t have an account yet?  <Link to='/register'>Register</Link></div>            

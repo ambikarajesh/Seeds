@@ -179,7 +179,7 @@ div > .toolbar_profile_container{
 
 
     /* REGISTER, LOGIN */
-    .login_container, .register_container{
+    .login_container, .register_container, .forgotpwd_container{
         border:1px solid #ccc;
         border-radius: 5px 5px;
         margin:50px auto;
@@ -187,7 +187,10 @@ div > .toolbar_profile_container{
     .login_container{
         width: 60%;
     }
-    .register_container{
+    .forgotpwd_container{
+        margin:120px auto;
+    }
+    .register_container, .forgotpwd_container{
         width: 40%;
     }
     .page_title{
@@ -287,7 +290,7 @@ div > .toolbar_profile_container{
     footer > div > div {
         width: 100%;
     }
-    .login_container{
+    .login_container, .register_container, .forgotpwd_container{
         width:90%;
     }
     .login_types{
@@ -306,9 +309,7 @@ div > .toolbar_profile_container{
     .login_fb_goo_btn{
         width:100%;
     }
-    .register_container{
-        width:90%;
-    }
+    
   }
 
 @media only screen and (max-width : 768px) {
