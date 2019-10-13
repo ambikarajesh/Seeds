@@ -3,20 +3,36 @@ import { MDBBtn, MDBInput } from 'mdbreact';
 import {updateInput, generateData, validateForm, clearInputs} from '../Utils/updateForm';
 import * as actionCreators from '../../store/actions';
 import {connect} from 'react-redux';
-class PwdReset extends React.Component {
+class NewPwdSet extends React.Component {
     state = {
         inputs:{ 
-            email:{
+            newPassword:{
                 config:{
-                    label:"Email", 
-                    icon:"envelope", 
-                    type:"email", 
-                    name:'email'
+                    label:"New Password", 
+                    icon:"lock", 
+                    type:"password", 
+                    name:'newPassword'
                 },                 
                 value:'',
                 validation:{
                     required:true,
-                    email:true
+                    password:true
+                },
+                valid:false,
+                touched:false,
+                validationMsg:""
+            },
+            confirmPassword:{
+                config:{
+                    label:"Confirm New Password", 
+                    icon:"lock", 
+                    type:"password", 
+                    name:'confirmPassword'
+                },                 
+                value:'',
+                validation:{
+                    required:true,
+                    confirmpwd:true
                 },
                 valid:false,
                 touched:false,
@@ -35,19 +51,20 @@ class PwdReset extends React.Component {
         const submitData = generateData(this.state.inputs);
         const validForm = validateForm(this.state.inputs);
         if(validForm){
-            this.props.dispatch(actionCreators.pwdReset(submitData)).then(res=>{
-                if(res.payload.success === true){
-                    this.setState({formValid:true, formSuccess:true, formValidErr:res.payload.message})
-                        setTimeout(()=>{                        
-                            this.props.history.push('/login')
-                        }, 1000)
-                }else{
-                    this.setState({formValid:false, formValidErr:res.payload.response.data.message})
-                } 
+            this.props.dispatch(actionCreators.newPwdSet(submitData.newPassword, this.props.match.params.token)).then(res=>{
+                console.log(res)
+                // if(res.payload.success === true){
+                //     this.setState({formValid:true, formSuccess:true, formValidErr:res.payload.message})
+                //         setTimeout(()=>{                        
+                //             this.props.history.push('/login')
+                //         }, 1000)
+                // }else{
+                //     this.setState({formValid:false, formValidErr:res.payload.response.data.message})
+                // } 
             }).catch(err=>{
                 this.setState({formValid:false, formValidErr:'Invalid Input'})
             })
-                       
+                    
         }else{
             this.setState({formValid:false, formValidErr:'Invalid Input'}) 
         }
@@ -101,7 +118,7 @@ class PwdReset extends React.Component {
                             })}                    
                         </div>
                         <div className='text_center'>
-                            <MDBBtn className='button' color="danger" onClick = {this.submitHandler}>Send Email</MDBBtn>
+                            <MDBBtn className='button' color="danger" onClick = {this.submitHandler}>Change</MDBBtn>
                         </div>
                     </form>
             </div>
@@ -109,4 +126,4 @@ class PwdReset extends React.Component {
     }
 };
 
-export default connect()(PwdReset);
+export default connect()(NewPwdSet);

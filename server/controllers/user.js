@@ -219,17 +219,22 @@ exports.postPwdReset = (req, res, next) => {
                     from: 'seeds@gmail.com',
                     subject: 'Reset Password Link',
                     text: 'you did reset password in sweetstore.com',
-                    html: `<b>please click the following <a href="http://localhost:3000/reset/${token}">link</a> for reset password</b>`
+                    html: `<b>please click the following <a href="http://localhost:3000/pwdreset/${token}">link</a> for reset password</b>`
                 }
                 sgMail.send(mail).then(result=>{
-                    console.log(result)                   
-                    console.log('success')
-                    res.status(200).json({
-                        success : true,
-                        message:'Successfully Send Email!!!',
-                    })
+                    if(result){
+                        res.status(200).json({
+                            success : true,
+                            message:'Successfully Send Email!!!',
+                        })
+                    }                    
                 }).catch(err=>{
-                    console.log(err)
+                    if(!err.statusCode){
+                        err.message = 'Internal Server Error';
+                        err.success = false;
+                        err.statusCode = 500;            
+                    }
+                    throw next(err);
                 })
             })
         })
@@ -244,4 +249,38 @@ exports.postPwdReset = (req, res, next) => {
         next(err);
     })
     
+}
+
+exports.postNewPwdSet = (req, res, next) => {
+    User.findOne({resetToken:req.body.token, resetTokenExpire:{$gt:Date.now()}}).then(user => { 
+        if(!user){
+            const error = new Error('Unauthorized User');
+            error.success = false;
+            error.status = 401;
+            return next(error);
+        }
+        user.password = req.body.newPassword;
+        user.resetToken = "";
+        user.resetTokenExpire = "";
+        user.save().then(result =>{        
+            res.status(201).json({           
+                success:true,
+                message:'Password Changed Successfully!!'
+            })
+        }).catch(err=>{ 
+            if(!err.statusCode){
+                err.message = 'Internal Server Error';
+                err.success = false;
+                err.statusCode = 500;            
+            }
+            throw next(err);
+        })
+    }).catch(err=>{
+        if(!err.statusCode){
+            err.message = 'Internal Server Error';
+            err.success = false;
+            err.statusCode = 500;            
+        }
+        next(err);
+    })
 }

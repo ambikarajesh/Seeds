@@ -13,6 +13,7 @@ router.post('/goo_login', userController.postGoogleLogin);
 
 
 router.post('/pwd_reset', userController.postPwdReset);
+router.post('/new_pwd_set', userController.postNewPwdSet);
 module.exports = router;
 
 
