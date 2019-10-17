@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 import App from './App';
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, HashRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
@@ -15,7 +15,9 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk, redu
 ReactDOM.render(
     <Provider store = {store}>
         <BrowserRouter>
-            <App />
+            <HashRouter>
+                <App />
+            </HashRouter>          
         </BrowserRouter>
     </Provider>
      , document.getElementById('root'));
