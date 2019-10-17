@@ -219,7 +219,7 @@ exports.postPwdReset = (req, res, next) => {
                     from: 'seeds@gmail.com',
                     subject: 'Reset Password Link',
                     text: 'you did reset password in sweetstore.com',
-                    html: `<b>please click the following <a href="http://localhost:3000/pwdreset/${token}">link</a> for reset password</b>`
+                    html: `<b>please click the following <a href="https://seedss.herokuapp.com/pwdreset/${token}">link</a> for reset password</b>`
                 }
                 sgMail.send(mail).then(result=>{
                     if(result){
