@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const userRouter = require('./routes/user');
-
+const helmet = require('helmet');
+const compression = require('compression');
 dotenv.config();
 
 const PORT = process.env.PORT || 8080;
@@ -15,7 +16,8 @@ const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
-
+app.use(compression());
+app.use(helmet());
 app.use('/api/product', (req, res)=>{
     res.status(200).json({
         name:'Ambika'
