@@ -4,16 +4,16 @@ const authMiddleware = require('../middleware/auth');
 const router = express.Router();
 
 
-router.post('/register', userController.postRegister);
-router.post('/login', userController.postLogin);
-router.get('/logout', authMiddleware, userController.getLogout);
+router.post('/user_register', userController.postRegister);
+router.post('/user_login', userController.postLogin);
+router.get('/user_logout', authMiddleware, userController.getLogout);
 
-router.post('/fb_login', userController.postFaceBookLogin);
-router.post('/goo_login', userController.postGoogleLogin);
+router.post('/user_fb_login', userController.postFaceBookLogin);
+router.post('/user_goo_login', userController.postGoogleLogin);
 
 
-router.post('/pwd_reset', userController.postPwdReset);
-router.post('/new_pwd_set', userController.postNewPwdSet);
+router.post('/user_pwd_reset', userController.postPwdReset);
+router.post('/user_new_pwd_set', userController.postNewPwdSet);
 module.exports = router;
 
 
