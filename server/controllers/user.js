@@ -284,3 +284,12 @@ exports.postNewPwdSet = (req, res, next) => {
         next(err);
     })
 }
+
+exports.UserAuthData = (req, res, next) => {
+    res.status(200).json({
+        email:req.user.email,
+        firstname:req.user.firstname,
+        lastname:req.user.lastname,
+        isAuth:true
+    })
+}

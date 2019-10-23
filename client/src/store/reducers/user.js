@@ -2,7 +2,8 @@ import * as actionTypes from '../types';
 
 const initialState = {   
   userId :null,
-  token:null
+  token:null,
+  user:null
 }
 
 const reducer = (state=initialState, action)=>{
@@ -45,6 +46,11 @@ const reducer = (state=initialState, action)=>{
                                       payload:action.payload
                                     }
         case actionTypes.NEW_PWD_SET: 
+                                    return {
+                                      ...state,
+                                      payload:action.payload
+                                    }
+        case actionTypes.AUTH_DATA:
                                     return {
                                       ...state,
                                       payload:action.payload

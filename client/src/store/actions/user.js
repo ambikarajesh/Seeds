@@ -84,3 +84,11 @@ export const newPwdSet = (newpwd, token) => {
         payload:req
     }
 }
+
+export const authData = () => {
+    const req = axios.get(`${SERVER}/user/user_auth`).then(res=> res.data).catch(err=> err);
+    return {
+        type:actionTypes.AUTH_DATA,
+        payload:req
+    }
+}

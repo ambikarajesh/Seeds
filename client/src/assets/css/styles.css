@@ -49,9 +49,9 @@ div > .toolbar_profile_container{
     display: inline-block;
 }
 .logo > a > span{
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
-    margin-left: -5px;
+    margin-left: -10px;
     color:#444;
 }
 .search{
@@ -256,6 +256,15 @@ div > .toolbar_profile_container{
         text-align: center;
     }
 
+    .progress{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding:15%;
+    }
+    .user{
+        
+    }
     
 
   @media (min-width:480px)  { 
@@ -271,11 +280,11 @@ div > .toolbar_profile_container{
 
   @media (max-width:480px){
     .logo{
-        margin-left: 0;
+        margin-left: -10px;
     }
     .search{
         width:150px;
-        margin-left:40px;
+        margin-left:35px;
     }
     div > .toolbar_profile_container{
         display: none;

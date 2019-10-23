@@ -14,6 +14,8 @@ router.post('/user_goo_login', userController.postGoogleLogin);
 
 router.post('/user_pwd_reset', userController.postPwdReset);
 router.post('/user_new_pwd_set', userController.postNewPwdSet);
+
+router.get('/user_auth', authMiddleware, userController.UserAuthData);
 module.exports = router;
 
 
